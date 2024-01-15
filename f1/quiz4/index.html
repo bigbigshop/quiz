@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timer and Google Form</title>
+  <style>
+  html{
+  overflow: hidden;
+  }
+  
+.timer {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 30px;
+  color: #333;
+  font-family: Arial, sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}	
+
+	.form-container {
+	  display: flex;
+	  justify-content: center;
+	  height: 100vh;
+	  overflow:auto;
+	}
+
+    .overlay {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 105%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-size: 24px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="timer" id="timer">載入中...</div>
+	<div class="overlay">Time is UP!</div>
+  <div class="form-container">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_fKlrkIqBT7mD-Ah2CIHc0SuW_hdFvcBns0xktW5EEaYTDA/viewform?embedded=true" width="640" height="769" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe> </div>
+
+  <script>
+    var secondsRemaining = 180; //set timmer
+    var timerElement = document.getElementById('timer');
+    var overlayElement = document.querySelector('.overlay');
+
+    function pad(number) {
+      return (number < 10 ? '0' : '') + number;
+    }
+
+    function updateTimer() {
+      var minutes = Math.floor(secondsRemaining / 60);
+      var seconds = secondsRemaining % 60;
+
+      timerElement.textContent = '🕑' + pad(minutes) + ':' + pad(seconds);
+
+      if (secondsRemaining <= 0) {
+        clearInterval(timerInterval);
+        timeUp();
+      } else {
+        secondsRemaining--;
+      }
+    }
+
+    function timeUp() {
+var formContainer = document.querySelector('.overlay');
+formContainer.style.display = 'flex';
+    }
+
+    var timerInterval = setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
